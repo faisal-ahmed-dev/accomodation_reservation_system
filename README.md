@@ -1,6 +1,6 @@
 ## Accommodation Reservation System
 
-This project aims to develop a user-friendly online rental platform for short-term stays, connecting travellers with unique lodging options and property owners with a means to monetize their spaces.
+This project aims to develop a user-friendly online rental platform for short-term stays, connecting travelers with unique lodging options and property owners with a means to monetize their spaces.
 
 **Features:**
 
@@ -12,7 +12,7 @@ This project aims to develop a user-friendly online rental platform for short-te
 
 **Technology Stack:**
 
-* **Front-end:** HTML, CSS , Javascript, jquery
+* **Front-end:** HTML, CSS, Javascript, jQuery
 * **Back-end:** PHP
 * **Database:** MySQL
 
@@ -33,8 +33,5 @@ This project aims to develop a user-friendly online rental platform for short-te
 
 * Implement advanced search and filtering functionalities.
 * Integrate secure payment gateways.
-* Develop mobile-friendly version of the website.
+* Develop a mobile-friendly version of the website.
 
-**Contributing:**
-
-We welcome contributions from the community! Please see the contribution guidelines for details.
