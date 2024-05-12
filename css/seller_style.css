@@ -259,6 +259,14 @@ section {
   box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
 }
 
+.btn:disabled,
+.delete-btn:disabled,
+.option-btn:disabled {
+  background-color: #ccc; /* Change to your desired disabled button background color */
+  color: #888; /* Change to your desired disabled button text color */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  box-shadow: none; /* Remove box shadow for disabled buttons */
+}
 
 .btn_start_chat{
   display: block;

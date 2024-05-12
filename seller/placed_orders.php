@@ -19,10 +19,10 @@
             if(message=='OK')
             {
                
-               alert('ok');
+               alert('mail send Successfully');
             }
             else{
-                alert('error');
+                alert('mail send error');
             }
          }
          );
@@ -123,6 +123,7 @@ else if($_POST['payment_status']=='completed')
 }
    $message[] = 'payment status updated!';
    $message_status[]='success';
+
 }
 
 if(isset($_GET['delete'])){
@@ -195,14 +196,24 @@ if(isset($_GET['delete'])){
          <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
          <input type="hidden" name="pid" value="<?= $fetch_orders['pid']; ?>">
 
-         <select name="payment_status" class="select">
-            <option selected disabled><?= $fetch_orders['payment_status']; ?></option>
-            <option value="pending">pending</option>
-            <option value="rejected">rejected</option>
-            <option value="completed">completed</option>
-         </select>
+                 <select id="paymentStatusSelect" name="payment_status" class="select" >
+                     <?php
+                     $paymentOptions = ['rejected', 'completed'];
+
+                     $fetchedPaymentStatus = strtolower($fetch_orders['payment_status']);
+
+                     echo '<option selected disabled>' . ucfirst($fetchedPaymentStatus) . '</option>';
+
+                     foreach ($paymentOptions as $option) {
+                         if ($option === $fetchedPaymentStatus) {
+                             continue; // Skip this iteration
+                         }
+                         echo '<option value="' . $option . '">' . ucfirst($option) . '</option>';
+                     }
+                     ?>
+                 </select>
         <div class="flex-btn">
-         <input type="submit" value="update" class="option-btn" name="update_payment">
+         <input type="submit" value="update" class="option-btn" name="update_payment" >
         </div>
       </form></td>
    </tr>
@@ -243,7 +254,6 @@ if(isset($_GET['delete'])){
 </section>
 
 </section>
-
 
 
 
