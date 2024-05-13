@@ -956,9 +956,12 @@ let flag=0;
          slidesPerView: 2
        },
        
-      650: {
+      520: {
         slidesPerView: 3,
       },
+       720:{
+           slidesPerView: 4,
+       },
       1224: {
         slidesPerView: 5,
       },

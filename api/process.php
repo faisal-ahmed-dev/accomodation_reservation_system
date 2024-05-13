@@ -1,6 +1,6 @@
 
 <?php
-include 'components/connect.php';
+include '../components/connect.php';
 if(isset($_POST['submit'])){
     $email = $_POST["email"];
     $email = filter_var($email, FILTER_SANITIZE_STRING);

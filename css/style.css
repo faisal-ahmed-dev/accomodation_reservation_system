@@ -472,6 +472,7 @@ button #wish{
   fill: white!important;
   stroke: white !important;
   top:20px;
+    z-index: 5;
 }
 
 
@@ -493,6 +494,7 @@ button #wish{
     fill: white!important;
     stroke: white !important;
     top:20px;
+    z-index: 5;
 }
 .swiper-button-disabled {
   visibility: hidden;
@@ -755,7 +757,7 @@ button #wish{
 	position: fixed;
 	left: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 10;
 	background-color: rgba(0, 0, 0, 0.7);
 	height: 100%;
 	width: 100%;
@@ -769,6 +771,7 @@ button #wish{
 	padding: 40px;
 	border-radius: 15px;
 	animation: animate .5s ease-in;
+    z-index: 100;
 }
 @keyframes animate {
 	from {
@@ -2281,6 +2284,23 @@ div.ui-datepicker{
   html {
     font-size: 55%;
   }
+    #load-data,#search_list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 30rem);
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    #modal-section {
+        position: relative;
+        background-color: #f7f7f7;
+        width: 90%;
+        margin: 7% auto;
+        padding: 40px;
+        border-radius: 15px;
+        animation: animate .5s ease-in;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -2316,6 +2336,75 @@ div.ui-datepicker{
   .home-bg .home .slide .content h3 {
     font-size: 3rem;
   }
+    #load-data,#search_list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 30rem);
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .swiper-button-next
+    {
+        right: 90px;
+        padding: 30px;
+        color: transparent;
+        fill: white!important;
+        stroke: white !important;
+        top:15px;
+    }
+    .swiper-button-prev {
+        left: -60px;
+        padding: 30px;
+        color: transparent;
+        fill: white!important;
+        stroke: white !important;
+        top:15px;
+    }
+
+    .swiper-button-next i,
+    .swiper-button-prev i
+    {
+        content: "\f053";
+        font-size: 2.5rem;
+        position: absolute;
+        color: black;
+        font-weight: 900;
+    }
+    .category .slide i{
+        color: #000000;
+        margin-top: 1.3rem;
+        margin-right: -2rem;
+        margin-left: 3rem;
+    }
+
+    .category .slide h3 {
+        font-size: 1.2rem;
+        color: var(--black);
+        user-select: none;
+        font-weight: bold;
+    }
+    #modal-section {
+        position: relative;
+        background-color: #f7f7f7;
+        width: 80%;
+        margin: 7% auto;
+        padding: 40px;
+        border-radius: 15px;
+        animation: animate .5s ease-in;
+    }
+    .wrapper_chat{
+        width: 55%;
+        background: #fff;
+        border-radius: 1rem;
+        border: 1px solid lightgrey;
+        border-top: 0px;
+
+    }
+    .orders .card {
+        width: 100%;
+        background: ghostwhite;
+        box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @media (max-width: 450px) {
@@ -2339,6 +2428,83 @@ div.ui-datepicker{
   .checkout-orders form .flex .inputBox {
     width: 100%;
   }
+
+    #load-data,#search_list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 40rem);
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .swiper-button-next
+    {
+        right: 90px;
+        padding: 30px;
+        color: transparent;
+        fill: white!important;
+        stroke: white !important;
+        top:15px;
+    }
+    .swiper-button-prev {
+        left: -60px;
+        padding: 30px;
+        color: transparent;
+        fill: white!important;
+        stroke: white !important;
+        top:15px;
+    }
+    .swiper-button-next i,
+    .swiper-button-prev i
+    {
+        content: "\f053";
+        font-size: 2.5rem;
+        position: absolute;
+        color: black;
+        font-weight: 900;
+    }
+    .category .slide i{
+        color: #000000;
+        margin-top: 1.3rem;
+        margin-right: -7rem;
+        margin-left: 2rem;
+    }
+
+    .category .slide h3 {
+        font-size: 1.2rem;
+        color: var(--black);
+        user-select: none;
+        font-weight: bold;
+    }
+
+    .header .flex .icons > * {
+        margin-left: 1.5rem;
+        font-size: 1.3rem;
+        padding: .5rem;
+        cursor: pointer;
+        color: var(--black);
+        border-radius: 2rem;
+        transition: all .7s cubic-bezier(0.15, 0.83, 0.66, 1);
+    }
+    #modal-section {
+        position: relative;
+        background-color: #f7f7f7;
+        width: 100%;
+        margin: 7% auto;
+        padding: 40px;
+        border-radius: 15px;
+        animation: animate .5s ease-in;
+    }
+
+    .wrapper_chat{
+        width: 90%;
+        background: #fff;
+        border-radius: 1rem;
+        border: 1px solid lightgrey;
+        border-top: 0px;
+
+    }
+
+
 }
 
 

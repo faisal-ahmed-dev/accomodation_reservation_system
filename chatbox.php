@@ -81,7 +81,7 @@ $(document).ready(function(){
  function fetch_user()
  {
   $.ajax({
-   url:"/api/fetch_seller.php",
+   url:"api/fetch_seller.php",
    method:"POST",
    success:function(data){
     $('#user_details').html(data);
@@ -119,7 +119,7 @@ $(document).ready(function(){
   seller_load_message();
   function seller_load_message(){
   $.ajax({
-   url:"/api/fetch_seller_chat.php",
+   url:"api/fetch_seller_chat.php",
    method:"get",
    data:{user_id:<?php echo $user_id ?>, seller_id:to_seller_id},
    
@@ -147,7 +147,7 @@ $(document).ready(function(){
   var chat_message = $('#chat_message_'+to_seller_id).val();
   console.log(chat_message);
   $.ajax({
-   url:"/api/send_message.php",
+   url:"send_message.php",
    method:"get",
    data:{seller_id:to_seller_id, text:chat_message},
    success:function(data)
