@@ -89,7 +89,7 @@ if(!isset($admin_id)){
       </div>
 
       <div class="box">         
-         <p>Products Added</p>
+         <p>Places Added</p>
 
          <?php
             $select_products = $conn->prepare("SELECT * FROM `products`");

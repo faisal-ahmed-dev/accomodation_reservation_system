@@ -95,7 +95,7 @@ if(!isset($seller_id)){
          ?>
          <h3><?= $number_of_products; ?></h3>
          <p>products added</p>
-         <a href="products.php" class="btn">see products</a>
+         <a href="products.php" class="btn">see places</a>
       </div>
 
 

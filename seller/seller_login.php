@@ -85,7 +85,7 @@ background: 'white'
 
    <form action="" method="post">
       
-      <h3>Seller Login</h3>
+      <h3>Host Login</h3>
       <div class="input_container">
       <label for="password_field" class="input_label">Username</label>
       <input type="text" name="username" class="input_field" required maxlength="50" placeholder="Enter your Username Or Email"  oninput="this.value = this.value.replace(/\s/g, '')">

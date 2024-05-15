@@ -15,12 +15,14 @@ document.getElementById('city').addEventListener('input', function () {
             },
         });
         const currentTemperature = response.data.list[0].main.temp;
-  
+        
+
         document.querySelector('.weather-temp').textContent = Math.round(currentTemperature) + 'ºC';
   
         const forecastData = response.data.list;
 
-  
+
+
         const dailyForecast = {};
         forecastData.forEach((data) => {
             const day = new Date(data.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' });
@@ -77,11 +79,16 @@ document.getElementById('city').addEventListener('input', function () {
   }
   
   function getWeatherIcon(iconCode) {
-    const iconBaseUrl = 'https://openweathermap.org/img/wn/';
-    const iconSize = '@2x.png';
-    return `<img src="${iconBaseUrl}${iconCode}${iconSize}" alt="Weather Icon">`;
-  }
-  
+    try {
+        const iconBaseUrl = 'https://openweathermap.org/img/wn/';
+        const iconSize = '@2x.png';
+        const iconUrl = `${iconBaseUrl}${iconCode}${iconSize}`;
+        return `<img src="${iconUrl}" alt="Weather Icon">`;
+    } catch (error) {
+        console.error('Error generating weather icon:', error.message);
+        return ''; 
+    }
+}
   document.addEventListener("DOMContentLoaded", function () {
     getWeather();
     setInterval(getWeather, 900000);

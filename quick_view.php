@@ -41,7 +41,7 @@ include 'components/wishlist_cart.php';
 
    <?php
      $pid = $_GET['pid'];
-     $select_products = $conn->prepare("SELECT products.id,products.name,products.price,products.image_01,products.image_02,products.image_03,products.category,products.details,products.p_person,products.p_bedroom,products.p_bed,products.p_bath,products.p_checkin,products.p_checkout,products.p_country,products.p_state,products.p_city as city,products.p_facility,seller.id as seller_id,seller.name as seller_name,seller.email as seller_email,seller.phone as seller_phone,seller.f_language,seller.s_language,seller.description as seller_desc FROM `products`,`seller` WHERE products.seller_id=seller.id and products.id = ?"); 
+     $select_products = $conn->prepare("SELECT products.id,products.name,products.price,products.image_01,products.image_02,products.image_03,products.category,products.details,products.p_person,products.p_bedroom,products.p_bed,products.p_bath,products.p_checkin,products.p_checkout,products.p_country as country,products.p_state,products.p_city as city,products.p_facility,seller.id as seller_id,seller.name as seller_name,seller.email as seller_email,seller.phone as seller_phone,seller.f_language,seller.s_language,seller.description as seller_desc FROM `products`,`seller` WHERE products.seller_id=seller.id and products.id = ?"); 
      $select_products->execute([$pid]);
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -67,7 +67,9 @@ include 'components/wishlist_cart.php';
          <div class="content">
           
             <div class="flex">
-            <div class="name "><?= $fetch_product['name']; ?> </div>
+            <div class="name "><?= $fetch_product['name']; ?><br>
+            <span class="city"><i style="margin-left: .3rem;" class="fa-solid fa-location-dot"></i> <?= $fetch_product['city']?>, <?=$fetch_product['country']; ?></span>
+         </div>
                
                <div class="card">
                   <p class="title"><span>$</span><span id='price'><?= $fetch_product['price']; ?></span><span> Per Night</span></p>

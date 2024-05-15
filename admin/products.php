@@ -84,7 +84,7 @@ if(isset($_POST['add_product'])){
             move_uploaded_file($image_tmp_name_01, $image_folder_01);
             move_uploaded_file($image_tmp_name_02, $image_folder_02);
             move_uploaded_file($image_tmp_name_03, $image_folder_03);
-            $message[] = 'new product added!';
+            $message[] = 'new places added!';
             $message_status[]='success';
          }
 
@@ -287,7 +287,7 @@ if(isset($_GET['delete'])){
    <?php
          }
       }else{
-         echo '<p class="empty">no products added yet!</p>';
+         echo '<p class="empty">no places added yet!</p>';
       }
    ?>
    
