@@ -41,7 +41,7 @@ include 'components/wishlist_cart.php';
 
    <?php
      $pid = $_GET['pid'];
-     $select_products = $conn->prepare("SELECT products.id,products.name,products.price,products.image_01,products.image_02,products.image_03,products.category,products.details,products.p_person,products.p_bedroom,products.p_bed,products.p_bath,products.p_checkin,products.p_checkout,products.p_country,products.p_state,products.p_city,products.p_facility,seller.id as seller_id,seller.name as seller_name,seller.email as seller_email,seller.phone as seller_phone,seller.f_language,seller.s_language,seller.description as seller_desc FROM `products`,`seller` WHERE products.seller_id=seller.id and products.id = ?"); 
+     $select_products = $conn->prepare("SELECT products.id,products.name,products.price,products.image_01,products.image_02,products.image_03,products.category,products.details,products.p_person,products.p_bedroom,products.p_bed,products.p_bath,products.p_checkin,products.p_checkout,products.p_country,products.p_state,products.p_city as city,products.p_facility,seller.id as seller_id,seller.name as seller_name,seller.email as seller_email,seller.phone as seller_phone,seller.f_language,seller.s_language,seller.description as seller_desc FROM `products`,`seller` WHERE products.seller_id=seller.id and products.id = ?"); 
      $select_products->execute([$pid]);
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -100,6 +100,92 @@ include 'components/wishlist_cart.php';
           
 
          </div>
+
+
+<div class="container_weather flex-btn_weather">
+        <div class="weather-side">
+            <div class="weather-gradient"></div>
+            <div class="flex-btn">
+               <div class="date-container">
+                  <h2 class="date-dayname"></h2>
+                  <span class="date-day"></span>
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span class="location"></span>
+               </div>
+               <div class="weather-container">
+                  <span class="weather-icon"></span>
+                  <h1 class="weather-temp"></h1>
+                  <h3 class="weather-desc"></h3>
+               </div>
+            </div>
+        </div>
+        <div class="info-side">
+            <div class="today-info-container">
+                <div class="today-info">
+                    <div class="humidity">
+                        <span class="title"><i class="fa-solid fa-droplet"></i> HUMIDITY</span>
+                        <span class="value"></span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="wind">
+                        <span class="title"><i class="fa-solid fa-wind"></i> WIND</span>
+                        <span class="value"></span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="week-container">
+                <ul class="week-list">
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    <li>
+                        <span class="day-name"></span>
+                        <span class="day-temp"></span>
+                        <span class="day-icon"></span>
+                    </li>
+                    
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="location-container">
+                
+                <input class="location-input" type="text" id="city" value="<?= $fetch_product['city']; ?>" hidden>
+            </div>
+        </div>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
          <div class="content seller">
             <h3>Host</h3>
             <div class="flex">
@@ -143,6 +229,8 @@ include 'components/wishlist_cart.php';
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+<script src="js/weather.js"></script>
+
 
     <script>
     function sendbtn() {
@@ -260,6 +348,9 @@ var dates= $("#checkin,#checkout").datepicker({
                   var price=document.getElementById("price").innerHTML;
                   var totalprice=dayDiff*price;
                   document.getElementById("info").innerHTML=dayDiff+" Nights x $"+price+"  = $"+totalprice;
+                  var priceInput = document.querySelector('input[name="price"]');
+                  priceInput.value = totalprice; 
+
                }
    }
    
@@ -292,6 +383,8 @@ var dates= $("#checkin,#checkout").datepicker({
                   var price=document.getElementById("price").innerHTML;
                   var totalprice=dayDiff*price;
                   document.getElementById("info").innerHTML=dayDiff+" Nights x $"+price+"  = $"+totalprice;
+                  var priceInput = document.querySelector('input[name="price"]');
+                  priceInput.value = totalprice; 
                }
    }
    

@@ -20,9 +20,16 @@
         $user_password = '';
         
         $conn = mysqli_connect('localhost', $user_name, $user_password,'airbnb');
-        $sql= "select * from products where category='$categoryselect' and p_status<>'Booked' limit $start,$limit";
-        $result= mysqli_query($conn,$sql);
-    
+
+        if($categoryselect!="all") {
+            $sql = "select * from products where category='$categoryselect' and p_status<>'Booked' limit $start,$limit";
+        }
+        else{
+            $sql = "select * from products where p_status<>'Booked' limit $start,$limit";
+        }
+        $result = mysqli_query($conn, $sql);
+
+
         if($result->num_rows >0)
     {
        $out=array();

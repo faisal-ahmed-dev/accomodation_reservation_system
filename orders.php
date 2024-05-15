@@ -98,7 +98,7 @@ if(isset($_SESSION['user_id'])){
    <div class="card checkout">
       <div class="footer">
          <label class="price">$  <?= $fetch_orders['total_price']; ?></label>
-         <a target="_blank" href="/tourify/quick_view.php?pid=<?= $fetch_orders['pid']; ?>"><button class='view'>View</button></a>
+         <a target="_blank" href="quick_view.php?pid=<?= $fetch_orders['pid']; ?>"><button class='view'>View</button></a>
       </div>
    </div>
    </div>

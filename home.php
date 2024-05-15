@@ -67,6 +67,10 @@ include 'components/wishlist_cart.php';
    <div class="swiper category-slider">
   
    <div class="swiper-wrapper">
+   <a href="#" onload='trigger()' onClick="update_all()" id="all"  class="swiper-slide slide">
+
+           <h3><i class="fa-solid fa-house fa-2xl"><p class='icon_select_all'><i class="fa-solid fa-check" style="color: #ffffff;"></i></p><span>All</span></i></h3>
+   </a>
    
    <a href="#" onload='trigger()' onClick="update_1()" id="one"  class="swiper-slide slide">
    
@@ -229,7 +233,7 @@ include 'components/wishlist_cart.php';
                         </div>
                      </div>
                      <div class="button-reg">
-                        <input type="submit" value="Apply" name="filter_submit" id="filter_submit"></button>
+                        <input type="submit" onclick=" modal.style.display = 'none'" value="Apply" name="filter_submit" id="filter_submit"></button>
                      </div>
                      <button type='button' id="clear" class="btn">Clear all </button>
 
@@ -288,12 +292,9 @@ include 'components/wishlist_cart.php';
 
 
 <!-- Pagination  -->
-
-
 <script >
- 
 
-
+const all = document.getElementById("all");
 const one = document.getElementById("one");
 const two = document.getElementById("two");
 const three = document.getElementById("three");
@@ -307,16 +308,24 @@ const ten = document.getElementById("ten");
 const eleven = document.getElementById("eleven");
 
 function trigger(){
-   document.getElementById("one").click();
+   document.getElementById("all").click();
 }
 
 window.addEventListener('load', function () {
-  document.getElementById("one").click();})
+  document.getElementById("all").click();})
 
  
 
 
-var categoryselect='room';
+var categoryselect='all';
+
+function update_all() {
+    reset();
+    $('.icon_select_all').css('display', 'flex');
+    $('#category_name').html('All');
+    categoryselect='all';
+
+}
 
 function update_1() {
   reset();
@@ -389,6 +398,7 @@ function update_2() {
  }
  
 function reset() {
+   $('.icon_select_all').css('display', 'none');
    $('.icon_select1').css('display', 'none');
    $('.icon_select2').css('display', 'none');
    $('.icon_select3').css('display', 'none');
@@ -455,7 +465,8 @@ let flag=0;
                               <input type="hidden" name="seller_id" value="${product['seller_id']}">
                              
                               
-                              <swiper-container class="mySwiper" pagination='true' pagination-clickable='true'style="--swiper-pagination-color: white;--swiper-pagination-bullet-size: 5px; --swiper-pagination-bullet-horizontal-gap: 3px;" >
+                              <swiper-container class="mySwiper" pagination='true' pagination-clickable='true'style="--swiper-pagination-color: white;--swiper-pagination-bullet-size: 7px; --swiper-pagination-bullet-horizontal-gap: 3px; --swiper-pagination-bullet-inactive-opacity: .5;  --swiper-pagination-bullet-inactive-color: #000;
+" >
 
                              
                                     <swiper-slide>
@@ -490,7 +501,7 @@ let flag=0;
 
                                     <div class="flex-btn ">
                                     <p class="grid-item date"><span id='checkin'>${product['name']}</span></p>
-                                    <p class="grid-item price"><span id='price'>$${product['price']}</span><span></span></p>
+                                    <p class="grid-item price"><span id='price'>$${product['price']}</span></p>
                                  </div>
                                   </div>                           
                                  </a>
@@ -543,7 +554,28 @@ let flag=0;
 
          })
 
-         
+          $("#all").click(function($e){
+              start=0;
+
+
+              let clean=document.querySelector('#load-data');
+              clean.replaceChildren();
+              $e.preventDefault();
+
+
+              categoryselect='all';
+
+
+              if(flag==0)
+              {
+                  load_data_ajax(limit,start,categoryselect);
+              }
+              else{
+                  load_filter_data_ajax(limit,start,categoryselect);
+
+              }
+
+          })
          $("#one").click(function($e){
             start=0;
             

@@ -77,11 +77,11 @@ if(isset($_POST['submit']))
       <input type="hidden" id="verify_code" name="verify_code" value="<?php echo $_SESSION['verify_code']= (rand(1000,9999));?>"/>
       <div class="input_container">
       <label for="password_field" class="input_label">Username</label>
-      <input type="text" name="name" class="input_field" required maxlength="50" placeholder="Enter your Username Or Email"  oninput="this.value = this.value.replace(/\s/g, '')"/>
+      <input type="text" name="name" class="input_field" required maxlength="50" placeholder="Enter your Username"  oninput="this.value = this.value.replace(/\s/g, '')"/>
       </div>
       <div class="input_container">
       <label for="password_field" class="input_label">Email</label>
-      <input type="text" id="email" name="email" class="input_field" required maxlength="50" placeholder="Enter your Username Or Email"  oninput="this.value = this.value.replace(/\s/g, '')"/>
+      <input type="email" id="email" name="email" class="input_field" required maxlength="50" placeholder="Enter your Email"  oninput="this.value = this.value.replace(/\s/g, '')"/>
       </div>
       <div class="input_container">
       <label for="password_field" class="input_label">Password</label>

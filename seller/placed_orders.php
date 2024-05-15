@@ -157,14 +157,7 @@ if(isset($_GET['delete'])){
 <h1 class="heading">placed orders</h1>
 
 <div class="box-containers">
-
-   <?php
-      $select_orders = $conn->prepare("SELECT * FROM `orders` Where seller_id=? order by placed_on DESC " );
-      $select_orders->execute([$seller_id]);
-      if($select_orders->rowCount() > 0){
-         while($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)){
-   ?>
-   <div class="boxs">
+<div class="boxs">
    <table class="table table-bordered table-striped">
       <tr>
       <td>placed on</td>
@@ -180,6 +173,13 @@ if(isset($_GET['delete'])){
       <td>Card Number</td>
       <td>Payment Status</td>
       </tr>
+   <?php
+      $select_orders = $conn->prepare("SELECT * FROM `orders` Where seller_id=? order by placed_on DESC " );
+      $select_orders->execute([$seller_id]);
+      if($select_orders->rowCount() > 0){
+         while($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)){
+   ?>
+   
       <tr>
          <td><?= $fetch_orders['placed_on']; ?></td>
          <td><?= $fetch_orders['id']; ?></td>
@@ -217,7 +217,7 @@ if(isset($_GET['delete'])){
         </div>
       </form></td>
    </tr>
- </table>
+
  <!--
       <p> placed on : <span><?= $fetch_orders['placed_on']; ?></span> </p>
        <p> Order id : <span><?= $fetch_orders['id']; ?></span> </p>
@@ -248,7 +248,7 @@ if(isset($_GET['delete'])){
          echo '<p class="empty">no orders placed yet!</p>';
       }
    ?>
-
+ </table>
 </div>
 
 </section>

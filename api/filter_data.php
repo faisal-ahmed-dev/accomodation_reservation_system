@@ -8,10 +8,15 @@
         
         $user_name = 'root';
         $user_password = '';
-        
+
         $conn = mysqli_connect('localhost', $user_name, $user_password,'airbnb');
-        $sql= " SELECT p.* FROM products p LEFT JOIN orders o ON p.id = o.pid WHERE  p.category='$categoryselect' and p.price between $min and $max  ";
-       
+
+        if($categoryselect!="all") {
+            $sql= " SELECT DISTINCT p.* FROM products p LEFT JOIN orders o ON p.id = o.pid WHERE  p.category='$categoryselect' and p.price between $min and $max  ";
+        }
+        else{
+            $sql= " SELECT DISTINCT p.* FROM products p LEFT JOIN orders o ON p.id = o.pid WHERE p.price between $min and $max  ";
+        }
         
         $limit= $_GET['limit'];
         $start= $_GET['start'];
@@ -24,16 +29,11 @@
         $checkin=$_GET['checkin'];
         $checkout=$_GET['checkout'];
        
-        if($checkin!=null && $checkin!='' )
-        {
-            $sql.= " and o.pid IS NULL OR ('$checkin' NOT BETWEEN o.checkin AND o.checkout) ";
+        if ($checkin != null && $checkin != '' && $checkout != null && $checkout != '') {
+            $checkinDate = date('d-m-Y', strtotime($checkin));
+            $checkoutDate = date('d-m-Y', strtotime($checkout));
+            $sql .= " AND (o.pid IS NULL OR (STR_TO_DATE('$checkinDate', '%d-%m-%Y') NOT BETWEEN o.checkin AND o.checkout) OR (STR_TO_DATE('$checkoutDate', '%d-%m-%Y') NOT BETWEEN o.checkin AND o.checkout))";
         }
-       
-         if($checkout!=null && $checkout!='' )
-        {
-            $sql.= " and o.pid IS NULL OR ('$checkout' NOT BETWEEN o.checkin AND o.checkout) ";
-        }
-
        
 
         if($bedroom!=null && $bedroom>0)

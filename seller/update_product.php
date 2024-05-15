@@ -35,18 +35,13 @@ if(isset($_POST['update'])){
 
 
 
-   $checkin = $_POST['checkin'];
-   $checkin =  date("d-m-Y",strtotime($checkin));
-   $checkout = $_POST['checkout'];
-   $checkout =  date("d-m-Y",strtotime($checkout));
-
    $address= $_POST['address'];
    $address=filter_var ($address ,FILTER_SANITIZE_STRING );
    $facility= $_POST['facility'];
    $facility=filter_var($facility ,FILTER_SANITIZE_STRING );
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ?,category=?,p_bedroom=?,p_person=?,p_bed=?,p_bath=?,p_checkin=?,p_checkout=?,p_address=?,p_facility=? WHERE id = ? and seller_id=?");
-   $update_product->execute([$name, $price, $details, $categoryOption,$bedroom,$person,$bed,$bath,$checkin,$checkout,$address,$facility,$pid,$seller_id]);
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ?,category=?,p_bedroom=?,p_person=?,p_bed=?,p_bath=?,p_address=?,p_facility=? WHERE id = ? and seller_id=?");
+   $update_product->execute([$name, $price, $details, $categoryOption,$bedroom,$person,$bed,$bath,$address,$facility,$pid,$seller_id]);
 
    $message[] = 'product updated successfully!';
    $message_status[]='success';
@@ -238,7 +233,6 @@ if(isset($_POST['update'])){
             <span>Category</span>
           
             <select name="category" value=""> 
-               <option value="" >Select</option>
                <option value="room"<?=$fetch_products['category'] == 'room' ? ' selected="selected"' : '';?>>room</option>
                <option value="beach"<?=$fetch_products['category'] == 'beach' ? ' selected="selected"' : '';?>>beach</option>
                <option value="city"<?=$fetch_products['category'] == 'city' ? ' selected="selected"' : '';?>>city</option>
@@ -253,22 +247,7 @@ if(isset($_POST['update'])){
                </select>
          </div>
 
-         <?php
-            $checkin = $fetch_products['p_checkin'];
-            $checkin =  date("Y-m-d",strtotime($checkin));
-         ?>
-         <div class="inputBox">
-            <span>Check in *</span>
-            <input type="date"value="<?=$checkin?>"  class="box"  placeholder="Check-in" name='checkin'>
-         </div>
-         <?php
-            $checkout = $fetch_products['p_checkout'];
-            $checkout =  date("Y-m-d",strtotime($checkout));
-         ?>
-         <div class="inputBox">
-            <span>Check out *</span>
-            <input type="date"value="<?=$checkout?>"  class="box"   placeholder="out" name='checkout'>
-         </div> 
+
          <div class="inputBox">
             <span>During Guest Stay Facilities*</span>
             <input type="text" class="box"value="<?=$fetch_products['p_facility'];?>" required maxlength="100" placeholder="enter Facilities" name="facility">

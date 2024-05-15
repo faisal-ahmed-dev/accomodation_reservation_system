@@ -58,11 +58,6 @@ if(isset($_POST['add_product'])){
    $cityOption = $_COOKIE['cityoption'];
    $cityOption = filter_var($cityOption, FILTER_SANITIZE_STRING);
 
-   $checkin = $_POST['checkin'];
-   $checkin =  date("d-m-Y",strtotime($checkin));
-   $checkout = $_POST['checkout'];
-   $checkout =  date("d-m-Y",strtotime($checkout));
-
 
    $address= $_POST['address'];
    $address=filter_var($address ,FILTER_SANITIZE_STRING );
@@ -76,8 +71,8 @@ if(isset($_POST['add_product'])){
 
    
 
-      $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price, image_01, image_02, image_03,category,p_person,p_bedroom,p_bed,p_bath,p_checkin,p_checkout,p_country,p_state,p_city,p_address,seller_id,p_status,p_facility) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-      $insert_products->execute([$name, $details, $price, $image_01, $image_02, $image_03,$categoryOption,$person,$bedroom,$bed,$bath,$checkin,$checkout,$countryOption,$stateOption,$cityOption,$address,$seller_id,'not',$facility]);
+      $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price, image_01, image_02, image_03,category,p_person,p_bedroom,p_bed,p_bath,p_country,p_state,p_city,p_address,seller_id,p_status,p_facility) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+      $insert_products->execute([$name, $details, $price, $image_01, $image_02, $image_03,$categoryOption,$person,$bedroom,$bed,$bath,$countryOption,$stateOption,$cityOption,$address,$seller_id,'not',$facility]);
 
       if($insert_products){
          if($image_size_01 > 2000000 OR $image_size_02 > 2000000 OR $image_size_03 > 2000000){
@@ -242,14 +237,7 @@ if(isset($_GET['delete'])){
          <div class="inputBox">
              </div>
 
-         <div class="inputBox">
-            <span>Check in *</span>
-            <input type="date"  class="box" required  placeholder="Check-in" name='checkin'>
-         </div>
-         <div class="inputBox">
-            <span>Check out *</span>
-            <input type="date"  class="box" required  placeholder="Check-out" name='checkout'>
-         </div>
+
          
          <div class="inputBox">
             <span>During Guest Stay Facilities*</span>
